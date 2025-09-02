@@ -72,7 +72,7 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: "Missing or invalid API key."
+                    example: "Missing or invalid API key"
 
     post:
       summary: Create a greeting
