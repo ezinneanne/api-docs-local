@@ -195,7 +195,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  error: { type: string, example: "Greeting not found" }
+                  error: { type: string, example: "Greeting not found." }
 
 components:
   securitySchemes:
