@@ -17,10 +17,10 @@ jobs:
   # This workflow contains a single job called "build-and-deploy"
   build-and-deploy:
     runs-on: ubuntu-latest
+    
+    # The fix is here! This gives the job permission to push a branch.
     permissions:
-      contents: read
-      pages: write
-      id-token: write
+      contents: write
 
     steps:
       # 1. Checkout the repository code
@@ -71,3 +71,4 @@ jobs:
           slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
           channel-id: 'C01R27LF962' # Replace with your Slack Channel ID
           text: "🚀 API documentation has been updated successfully. View the changes at: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+
