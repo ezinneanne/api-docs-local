@@ -6,16 +6,13 @@ info:
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
-
 servers:
   - url: https://api.yourdomain.com/v3
     description: Production server (v3)
   - url: https://staging.yourdomain.com/v3
     description: Staging server
-
 security:
   - api_key: []
-
 paths:
   /hello:
     get:
@@ -26,10 +23,13 @@ paths:
       parameters:
         - name: name
           in: query
-          schema: { type: string }
+          schema:
+            type: string
         - name: lang
           in: query
-          schema: { type: string, enum: [en, fr, es, ig] }
+          schema:
+            type: string
+            enum: [en, fr, es, ig]
       responses:
         '200':
           description: Greeting response
@@ -38,7 +38,8 @@ paths:
               schema:
                 type: object
                 properties:
-                  message: { type: string }
+                  message:
+                    type: string
         '400':
           description: Invalid query parameters
           content:
@@ -46,7 +47,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  error: { type: string, example: "Invalid query parameter" }
+                  error:
+                    type: string
+                    example: "Invalid query parameter"
         '401':
           description: Unauthorized
           content:
@@ -54,8 +57,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  error: { type: string, example: "Missing or invalid API key" }
-
+                  error:
+                    type: string
+                    example: "Missing or invalid API key"
     post:
       summary: Create a greeting
       operationId: createGreeting
@@ -68,8 +72,11 @@ paths:
             schema:
               type: object
               properties:
-                name: { type: string }
-                lang: { type: string, enum: [en, fr, es, ig] }
+                name:
+                  type: string
+                lang:
+                  type: string
+                  enum: [en, fr, es, ig]
       responses:
         '201':
           description: Greeting created
@@ -78,8 +85,10 @@ paths:
               schema:
                 type: object
                 properties:
-                  id: { type: string }
-                  message: { type: string }
+                  id:
+                    type: string
+                  message:
+                    type: string
         '400':
           description: Invalid request body
           content:
@@ -87,7 +96,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  error: { type: string, example: "Invalid request payload" }
+                  error:
+                    type: string
+                    example: "Invalid request payload"
         '401':
           description: Unauthorized
           content:
@@ -95,8 +106,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  error: { type: string, example: "Missing or invalid API key" }
-
+                  error:
+                    type: string
+                    example: "Missing or invalid API key"
   /hello/{id}:
     get:
       summary: Retrieve a saved greeting by ID
@@ -107,7 +119,8 @@ paths:
         - name: id
           in: path
           required: true
-          schema: { type: string }
+          schema:
+            type: string
       responses:
         '200':
           description: Greeting found
@@ -116,8 +129,10 @@ paths:
               schema:
                 type: object
                 properties:
-                  id: { type: string }
-                  message: { type: string }
+                  id:
+                    type: string
+                  message:
+                    type: string
         '400':
           description: Invalid ID supplied
           content:
@@ -125,7 +140,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  error: { type: string, example: "Invalid ID format" }
+                  error:
+                    type: string
+                    example: "Invalid ID format"
         '401':
           description: Unauthorized
           content:
@@ -133,7 +150,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  error: { type: string, example: "Missing or invalid API key" }
+                  error:
+                    type: string
+                    example: "Missing or invalid API key"
         '404':
           description: Greeting not found
           content:
@@ -141,8 +160,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  error: { type: string, example: "Greeting not found" }
-
+                  error:
+                    type: string
+                    example: "Greeting not found"
     put:
       summary: Update a greeting
       operationId: updateGreeting
@@ -152,7 +172,8 @@ paths:
         - name: id
           in: path
           required: true
-          schema: { type: string }
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -160,8 +181,11 @@ paths:
             schema:
               type: object
               properties:
-                name: { type: string }
-                lang: { type: string, enum: [en, fr, es, ig] }
+                name:
+                  type: string
+                lang:
+                  type: string
+                  enum: [en, fr, es, ig]
       responses:
         '200':
           description: Greeting updated
@@ -170,8 +194,10 @@ paths:
               schema:
                 type: object
                 properties:
-                  id: { type: string }
-                  message: { type: string }
+                  id:
+                    type: string
+                  message:
+                    type: string
         '400':
           description: Invalid input
           content:
@@ -179,7 +205,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  error: { type: string, example: "Invalid request body" }
+                  error:
+                    type: string
+                    example: "Invalid request body"
         '401':
           description: Unauthorized
           content:
@@ -187,7 +215,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  error: { type: string, example: "Missing or invalid API key" }
+                  error:
+                    type: string
+                    example: "Missing or invalid API key"
         '404':
           description: Greeting not found
           content:
@@ -195,8 +225,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  error: { type: string, example: "Greeting not found." }
-
+                  error:
+                    type: string
+                    example: "Greeting not found."
 components:
   securitySchemes:
     api_key:

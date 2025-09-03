@@ -3,21 +3,18 @@ info:
   title: Sample API v2
   version: 2.0.0
   description: |
-    This is version 2 of the Sample API.  
+    This is version 2 of the Sample API.
     It supports reading existing greetings and creating new ones.
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
-
 servers:
   - url: https://api.yourdomain.com/v2
     description: Production server (v2)
   - url: https://staging.yourdomain.com/v2
     description: Staging server
-
 security:
   - api_key: []
-
 paths:
   /hello:
     get:
@@ -73,7 +70,6 @@ paths:
                   error:
                     type: string
                     example: "Missing or invalid API key"
-
     post:
       summary: Create a greeting
       operationId: createGreeting
@@ -127,7 +123,6 @@ paths:
                   error:
                     type: string
                     example: "Missing or invalid API key."
-
   /hello/{id}:
     get:
       summary: Retrieve a saved greeting by ID
@@ -187,7 +182,6 @@ paths:
                   error:
                     type: string
                     example: "Greeting not found."
-
 components:
   securitySchemes:
     api_key:

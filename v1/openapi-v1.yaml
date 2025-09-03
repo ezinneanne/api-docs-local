@@ -6,16 +6,13 @@ info:
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
-
 servers:
   - url: https://api.yourdomain.com/v1
     description: Production server(v1)
   - url: https://staging.yourdomain.com/v1
     description: Staging server(v1)
-
 security:
   - api_key: []
-
 paths:
   /hello:
     get:
@@ -86,7 +83,6 @@ paths:
                   error:
                     type: string
                     example: "Missing or invalid API key."
-
 components:
   securitySchemes:
     api_key:
