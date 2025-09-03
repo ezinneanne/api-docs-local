@@ -1,7 +1,7 @@
 # Name of the workflow
 name: Build and Deploy API Documentation
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push events but only for the main branch
   push:
@@ -17,10 +17,8 @@ jobs:
   # This workflow contains a single job called "build-and-deploy"
   build-and-deploy:
     runs-on: ubuntu-latest
-    
-    # The fix is here! This gives the job permission to push a branch.
     permissions:
-      contents: write
+      contents: write # This MUST be 'write' to allow pushing to the gh-pages branch
 
     steps:
       # 1. Checkout the repository code
@@ -41,13 +39,13 @@ jobs:
       - name: Create build directory
         run: mkdir -p public
 
-      # 5. Build documentation for each version and copy to the public directory
+      # 5. Build documentation for each version
       - name: Build v1 Docs
         run: redocly build-docs v1/openapi-v1.yaml -o public/v1/index.html
 
       - name: Build v2 Docs
         run: redocly build-docs v2/openapi-v2.yaml -o public/v2/index.html
-      
+
       - name: Build v3 Docs
         run: redocly build-docs v3/openapi-v3.yaml -o public/v3/index.html
 
@@ -55,7 +53,11 @@ jobs:
       - name: Copy landing page
         run: cp docs/index.html public/index.html
 
-      # 7. Deploy the contents of the 'public' directory to the 'gh-pages' branch
+      # 7. NEW DIAGNOSTIC STEP
+      - name: Verify Build Output
+        run: ls -lhR public
+
+      # 8. Deploy the contents of the 'public' directory to the 'gh-pages' branch
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

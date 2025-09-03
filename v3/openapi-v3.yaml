@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Sample API
+  title: Sample API 
   version: 3.0.0
   description: API with greeting plus Create, Read, and Update endpoints
   license:
