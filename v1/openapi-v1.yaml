@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Sample API 
+  title: Sample API
   version: 1.0.0
   description: This is a sample API demonstrating a simple greeting endpoint with query parameters and multilingual support.
   license:

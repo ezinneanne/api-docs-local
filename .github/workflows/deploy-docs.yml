@@ -25,35 +25,35 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Set up Node.js for the Redocly CLI
+      # 2. Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      # 3. Install the Redocly CLI tool
-      - name: Install Redocly CLI
-        run: npm install -g @redocly/cli
+      # 3. Install the original Redoc CLI tool
+      - name: Install Redoc CLI
+        run: npm install -g redoc-cli
 
       # 4. Create a directory to store the built documentation
       - name: Create build directory
         run: mkdir -p public
 
-      # 5. Build documentation for each version
-      - name: Build v1 Docs
-        run: redocly build-docs v1/openapi-v1.yaml -o public/v1/index.html
+      # 5. Bundle documentation for each version using the 'bundle' command
+      - name: Bundle v1 Docs
+        run: redoc-cli bundle v1/openapi-v1.yaml -o public/v1/index.html
 
-      - name: Build v2 Docs
-        run: redocly build-docs v2/openapi-v2.yaml -o public/v2/index.html
+      - name: Bundle v2 Docs
+        run: redoc-cli bundle v2/openapi-v2.yaml -o public/v2/index.html
 
-      - name: Build v3 Docs
-        run: redocly build-docs v3/openapi-v3.yaml -o public/v3/index.html
+      - name: Bundle v3 Docs
+        run: redoc-cli bundle v3/openapi-v3.yaml -o public/v3/index.html
 
       # 6. Copy the main landing page into the public directory
       - name: Copy landing page
         run: cp docs/index.html public/index.html
 
-      # 7. NEW DIAGNOSTIC STEP
+      # 7. Verify Build Output (Let's keep this for one more run to confirm)
       - name: Verify Build Output
         run: ls -lhR public
 
